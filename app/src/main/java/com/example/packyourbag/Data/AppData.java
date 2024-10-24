@@ -126,4 +126,63 @@ public class AppData extends Application {
         }
         System.out.println("Data added!");
     }
+    
+    public void persistDataByCategory(String category, Boolean onlyDelete){
+        try {
+            List<Items> list = deleteAndGetListByCategory(category, onlyDelete);
+            if (!onlyDelete){
+                for (Items items : list){
+                    database.mainDAO().saveItem(items);
+                }
+                Toast.makeText(context, category +"Reset Successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, category +"Reset Successfully!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
+            Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private List<Items> deleteAndGetListByCategory(String category, Boolean onlyDelete){
+        if (onlyDelete){
+            database.mainDAO().deleteAllByCategoryAndAddedBy(category, MyConstants.SYSTEM_SMALL);
+        } else {
+            database.mainDAO().deleteAllByCategory(category);
+        }
+
+        switch (category){
+            case MyConstants.BASIC_NEEDS_CAMEL_CASE:
+                return getBasicData();
+
+            case MyConstants.BABY_NEEDS_CAMEL_CASE:
+                return getBabyNeedsData();
+
+            case MyConstants.CLOTHING_CAMEL_CASE:
+                return getClothingData();
+
+            case MyConstants.PERSONAL_CARE_CAMEL_CASE:
+                return getPersonalCareData();
+
+            case MyConstants.HEALTH_CAMEL_CASE:
+                return getHealthData();
+
+            case MyConstants.TECHNOLOGY_CAMEL_CASE:
+                return getTechnologyData();
+
+            case MyConstants.FOOD_CAMEL_CASE:
+                return getFoodData();
+
+            case MyConstants.BEACH_SUPPLIES_CAMEL_CASE:
+                return getBeachSuppliesData();
+
+            case MyConstants.CAR_SUPPLIES_CAMEL_CASE:
+                return getCarSuppliesData();
+
+            case MyConstants.NEEDS_CAMEL_CASE:
+                return getNeedsData();
+
+            default:return new ArrayList<>();
+        }
+    }
 }
