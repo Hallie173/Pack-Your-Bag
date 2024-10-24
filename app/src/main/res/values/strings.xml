@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PackYourBag</string>
+    <string name="my_selections">My Selections</string>
+    <string name="custom_list">Custom List</string>
+    <string name="reset">Reset to Default</string>
+    <string name="delete_default">Delete Default Data</string>
+    <string name="about_us">About Us</string>
+    <string name="exit">Exit</string>
+    <string name="search">Search</string>
 </resources>
