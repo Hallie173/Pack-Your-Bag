@@ -135,9 +135,9 @@ public class AppData extends Application {
                 for (Items items : list){
                     database.mainDAO().saveItem(items);
                 }
-                Toast.makeText(context, category +"Reset Successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, category + " Reset Successfully!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, category +"Reset Successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, category + " Delete Successfully!", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex){
             ex.printStackTrace();
